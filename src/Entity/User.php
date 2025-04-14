@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     /**
@@ -55,7 +55,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->registrations = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable(); 
+        $this->registrations = new ArrayCollection(); 
     }
 
     public function getId(): ?int

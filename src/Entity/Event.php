@@ -33,10 +33,10 @@ class Event
     #[ORM\Column]
     private ?\DateTimeImmutable $endAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     /**
@@ -47,6 +47,8 @@ class Event
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
         $this->registeredParticipants = new ArrayCollection();
     }
 
