@@ -26,7 +26,13 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:           
+        main:
+            json_login:
+                check_path: /authentication_token
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure          
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\AppAuthenticator
@@ -39,26 +45,26 @@ security:
                 path: /
 
         user:
-            pattern: ^/api/user
+            pattern: ^/api/users
             methods: [POST, PUT, PATCH, DELETE]
             stateless: true
             jwt: ~
         event:
-            pattern: ^/api/event
+            pattern: ^/api/events
             methods: [POST, PUT, PATCH, DELETE]
             stateless: true
             jwt: ~
         registration:
-            pattern: ^/api/registration
+            pattern: ^/api/registrations
             methods: [POST, PUT, PATCH, DELETE]
             stateless: true
             jwt: ~
 
     access_control:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api/user, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT, PATCH, DELETE] }
-        - { path: ^/api/event, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT, PATCH, DELETE] }
-        - { path: ^/api/registration, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT, PATCH, DELETE] }     
+        - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT, PATCH, DELETE] }
+        - { path: ^/api/events, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT, PATCH, DELETE] }
+        - { path: ^/api/registrations, roles: IS_AUTHENTICATED_FULLY, methods: [POST, PUT, PATCH, DELETE] }     
         - { path: ^/authentication_token, roles: PUBLIC_ACCESS }
 
 when@test:

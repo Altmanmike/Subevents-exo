@@ -10,8 +10,26 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 
-#[ApiResource]
+/**
+ * Secured resource.
+ */
+#[ApiResource(
+    operations: [
+        new Get(security: "is_granted('ROLE_USER')", securityMessage: 'Nécessite une authentification par token'),
+        new GetCollection(security: "is_granted('ROLE_USER')", securityMessage: 'Nécessite une authentification par token'),
+        new Post(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
+        new Put(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
+        new Patch(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
+        new Delete(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token')
+    ]
+)]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà ce mail dans la base de données')]

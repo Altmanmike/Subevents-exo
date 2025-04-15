@@ -5,9 +5,27 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\RegistrationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 
+/**
+ * Secured resource.
+ */
+#[ApiResource(
+    operations: [
+        new Get(security: "is_granted('ROLE_USER')", securityMessage: 'Nécessite une authentification par token'),
+        new GetCollection(security: "is_granted('ROLE_USER')", securityMessage: 'Nécessite une authentification par token'),
+        new Post(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
+        new Put(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
+        new Patch(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
+        new Delete(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token')
+    ]
+)]
 #[ORM\Entity(repositoryClass: RegistrationRepository::class)]
-#[ApiResource]
 class Registration
 {
     #[ORM\Id]
