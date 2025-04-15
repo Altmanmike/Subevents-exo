@@ -15,34 +15,25 @@ class RegistrationFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $registration = new Registration();
-        $registration->setUser($this->getReference('user_03', User::class));
-        $registration->setEvent($this->getReference('event_01', Event::class));
-        $registration->setRegisteredAt(new \DateTimeImmutable());
+        $u=1;
+        $e=1;
+        for ($u=1; $u <= 10; $u++) {
+            for ($e=1; $e <=5 ; $e++) {
 
-        $manager->persist($registration);
+                $registration = new Registration();
 
-        $registration = new Registration();
-        $registration->setUser($this->getReference('user_05', User::class));
-        $registration->setEvent($this->getReference('event_02', Event::class));
-        $registration->setRegisteredAt(new \DateTimeImmutable());
+                if ($u === 10) {
+                    $registration->setUser($this->getReference('user_'.$u, User::class));
+                } else {
+                    $registration->setUser($this->getReference('user_0'.$u, User::class));
+                }
+                
+                $registration->setEvent($this->getReference('event_0'.$e, Event::class));
+                $registration->setRegisteredAt(new \DateTimeImmutable());
 
-        $manager->persist($registration);
-
-        $registration = new Registration();
-        $registration->setUser($this->getReference('user_02', User::class));
-        $registration->setEvent($this->getReference('event_03', Event::class));
-        $registration->setRegisteredAt(new \DateTimeImmutable());
-
-        $manager->persist($registration);
-
-        $registration = new Registration();
-        $registration->setUser($this->getReference('user_04', User::class));
-        $registration->setEvent($this->getReference('event_02', Event::class));
-        $registration->setRegisteredAt(new \DateTimeImmutable());
-
-        $manager->persist($registration);
-
+                $manager->persist($registration);
+            }             
+        }
         $manager->flush();
     }
 

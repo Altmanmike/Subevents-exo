@@ -25,6 +25,7 @@ class UserFixtures extends Fixture
 
         $manager->persist($user);
 
+
         $user = new User();
         $user->setEmail("err22@aol.com");
         $user->setRoles(['ROLE_USER']);
@@ -36,6 +37,7 @@ class UserFixtures extends Fixture
         $this->addReference('user_02', $user);   
 
         $manager->persist($user);
+
 
         $user = new User();
         $user->setEmail("jojo@aol.com");
@@ -49,6 +51,7 @@ class UserFixtures extends Fixture
 
         $manager->persist($user);
 
+
         $user = new User();
         $user->setEmail("thebigman@yahoo.fr");
         $user->setRoles(['ROLE_USER']);
@@ -60,6 +63,7 @@ class UserFixtures extends Fixture
         $this->addReference('user_04', $user);
 
         $manager->persist($user);
+
 
         $user = new User();
         $user->setEmail("bille@arc.uk");
@@ -73,6 +77,7 @@ class UserFixtures extends Fixture
 
         $manager->persist($user);
 
+
         $user = new User();
         $user->setEmail("marc@wanado.fr");
         $user->setRoles(['ROLE_USER']);
@@ -82,6 +87,58 @@ class UserFixtures extends Fixture
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
         $this->addReference('user_06', $user);
+
+        $manager->persist($user);
+
+
+        $user = new User();
+        $user->setEmail("john@gmx.fr");
+        $user->setRoles(['ROLE_USER']);
+        $user->setFirstName("John");
+        $user->setLastName("DUMONT");
+        $user->setPassword($this->passwordEncoder->hashPassword($user, "xx_R1Pm-pTa2"));
+        $user->setIsVerified(true);
+        $user->setCreatedAt(new \DatetimeImmutable());
+        $this->addReference('user_07', $user);
+
+        $manager->persist($user);
+
+
+        $user = new User();
+        $user->setEmail("virgie03@hotmail.fr");
+        $user->setRoles(['ROLE_USER']);
+        $user->setFirstName("virginie");
+        $user->setLastName("VILLOT");
+        $user->setPassword($this->passwordEncoder->hashPassword($user, "xY_u1bv-OpQ2"));
+        $user->setIsVerified(true);
+        $user->setCreatedAt(new \DatetimeImmutable());
+        $this->addReference('user_08', $user);
+
+        $manager->persist($user);
+
+
+        $user = new User();
+        $user->setEmail("bob@amazon.com");
+        $user->setRoles(['ROLE_USER']);
+        $user->setFirstName("Bob");
+        $user->setLastName("SIXTY");
+        $user->setPassword($this->passwordEncoder->hashPassword($user, "h9_u66v-lp9m"));
+        $user->setIsVerified(true);
+        $user->setCreatedAt(new \DatetimeImmutable());
+        $this->addReference('user_09', $user);
+
+        $manager->persist($user);
+
+
+        $user = new User();
+        $user->setEmail("paul@aol.com");
+        $user->setRoles(['ROLE_USER']);
+        $user->setFirstName("Paul");
+        $user->setLastName("DURAND");
+        $user->setPassword($this->passwordEncoder->hashPassword($user, "c9_fx6I-mp07"));
+        $user->setIsVerified(true);
+        $user->setCreatedAt(new \DatetimeImmutable());
+        $this->addReference('user_10', $user);
 
         $manager->persist($user);
 

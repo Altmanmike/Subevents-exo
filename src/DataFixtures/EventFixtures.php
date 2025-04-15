@@ -14,13 +14,14 @@ class EventFixtures extends Fixture
         $event->setTitle("Sports extrême de la ville");
         $event->setDescription("L'ensemble des sports qui seront représentés sont : l'escalade, le vtt trial, le bmx, le skate et d'autres!");
         $event->setMaxParticipants(4);
-        $event->setStartAt(new \DateTimeImmutable("2025-05-10 10:00:00"));
-        $event->setEndAt(new \DateTimeImmutable("2025-05-15 19:00:00"));
+        $event->setStartAt(new \DateTimeImmutable("2025-04-10 10:00:00"));
+        $event->setEndAt(new \DateTimeImmutable("2025-04-15 12:00:00"));
         $event->setCreatedAt(new \DateTimeImmutable());
         $event->setUpdatedAt(new \DateTimeImmutable());
         $this->addReference('event_01', $event);
 
         $manager->persist($event);
+
 
         $event = new Event();
         $event->setTitle("Gallerie d'art : les arts modernes");
@@ -46,6 +47,33 @@ class EventFixtures extends Fixture
         $this->addReference('event_03', $event);
 
         $manager->persist($event);
+        
+
+        $event = new Event();
+        $event->setTitle("Compétition 100m piscine municipal");
+        $event->setDescription("Rejoignez les bordures du rhône pour voir sur écran géant la compétition régionale de 100 m toute nage, féminin et masculien, junior et adultes");
+        $event->setMaxParticipants(10);
+        $event->setStartAt(new \DateTimeImmutable("2025-07-10 15:00:00"));
+        $event->setEndAt(new \DateTimeImmutable("2025-07-13 15:00:00"));
+        $event->setCreatedAt(new \DateTimeImmutable());
+        $event->setUpdatedAt(new \DateTimeImmutable());
+        $this->addReference('event_04', $event);
+
+        $manager->persist($event);
+
+
+        $event = new Event();
+        $event->setTitle("Découverte danse rock pour les jeunes");
+        $event->setDescription("La ville organise une activité découverte de la danse Rock pour les jeunes, possibilité d'inscription dès 10 ans jusqu'à 20 ans, tous les week-end du mois d'août, les samedi de 14h à 18h");
+        $event->setMaxParticipants(6);
+        $event->setStartAt(new \DateTimeImmutable("2025-08-01 13:30:00"));
+        $event->setEndAt(new \DateTimeImmutable("2025-08-31 18:30:00"));
+        $event->setCreatedAt(new \DateTimeImmutable());
+        $event->setUpdatedAt(new \DateTimeImmutable());
+        $this->addReference('event_05', $event);
+
+        $manager->persist($event);
+
 
         $manager->flush();
     }
