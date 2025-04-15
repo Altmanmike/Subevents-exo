@@ -22,10 +22,10 @@ use ApiPlatform\Metadata\Delete;
     operations: [
         new Get(security: "is_granted('ROLE_USER')", securityMessage: 'Nécessite une authentification par token'),
         new GetCollection(security: "is_granted('ROLE_USER')", securityMessage: 'Nécessite une authentification par token'),
-        new Post(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
-        new Put(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
-        new Patch(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token'),
-        new Delete(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token')
+        new Post(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token et d\'être admin'),
+        new Put(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token et d\'être admin'),
+        new Patch(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token et d\'être admin'),
+        new Delete(security: "is_granted('ROLE_ADMIN')", securityMessage: 'Nécessite une authentification par token et d\'être admin')
     ]
 )]
 #[ORM\Entity(repositoryClass: EventRepository::class)]
