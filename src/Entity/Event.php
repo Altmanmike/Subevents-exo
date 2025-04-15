@@ -43,13 +43,13 @@ class Event
      * @var Collection<int, Registration>
      */
     #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'event')]
-    private Collection $registeredParticipants;
+    private Collection $registrations;
 
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
-        $this->registeredParticipants = new ArrayCollection();
+        $this->registrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,24 +144,24 @@ class Event
     /**
      * @return Collection<int, Registration>
      */
-    public function getRegisteredParticipants(): Collection
+    public function getRegistrations(): Collection
     {
-        return $this->registeredParticipants;
+        return $this->registrations;
     }
 
-    public function addRegisteredParticipant(Registration $registration): static
+    public function addRegistrations(Registration $registration): static
     {
-        if (!$this->registeredParticipants->contains($registration)) {
-            $this->registeredParticipants->add($registration);
+        if (!$this->registrations->contains($registration)) {
+            $this->registrations->add($registration);
             $registration->setEvent($this);
         }
 
         return $this;
     }
 
-    public function removeRegisteredParticipant(Registration $registration): static
+    public function removeRegistrations(Registration $registration): static
     {
-        if ($this->registeredParticipants->removeElement($registration)) {
+        if ($this->registrations->removeElement($registration)) {
             // set the owning side to null (unless already changed)
             if ($registration->getEvent() === $this) {
                 $registration->setEvent(null);
