@@ -18,6 +18,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_ADMIN']);
         $user->setFirstName("admin");
         $user->setLastName("ADMIN");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "admin"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
@@ -31,6 +32,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("Erwan");
         $user->setLastName("BILART");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "x4_ikPo-the2"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
@@ -44,6 +46,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("Joseph");
         $user->setLastName("BUDENA");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "p9_iSroo_h18"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
@@ -57,6 +60,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("Alfred");
         $user->setLastName("SCHWARTZ");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "vS_UUP5-45eu"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
@@ -70,6 +74,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("Jack");
         $user->setLastName("SPARROW");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "789ik_o-64g2"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable()); 
@@ -83,6 +88,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("Marc");
         $user->setLastName("DUPONT");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "7j_inPm-tTa3"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
@@ -96,6 +102,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("John");
         $user->setLastName("DUMONT");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "xx_R1Pm-pTa2"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
@@ -109,6 +116,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("virginie");
         $user->setLastName("VILLOT");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "xY_u1bv-OpQ2"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
@@ -122,6 +130,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("Bob");
         $user->setLastName("SIXTY");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "h9_u66v-lp9m"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());
@@ -135,6 +144,7 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $user->setFirstName("Paul");
         $user->setLastName("DURAND");
+        $user->setPhone("+33781570127");
         $user->setPassword($this->passwordEncoder->hashPassword($user, "c9_fx6I-mp07"));
         $user->setIsVerified(true);
         $user->setCreatedAt(new \DatetimeImmutable());

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventRegistration page{% endblock %}
+
+{% block body %}
+
+    <div class="container mx-auto my-5 w-50">
+
+        <button href="{{ path('app_app')}}" class="btn btn-secondary mb-5">retour</button>
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endfor %}
+
+        <h1>Inscription</h1>
+
+        {{ form_errors(eventRegistrationForm) }}
+
+        {{ form_start(eventRegistrationForm) }}
+            {{ form_row(eventRegistrationForm.user, {
+                label: 'Utilisateur'
+            }) }}
+            {{ form_row(eventRegistrationForm.event, {
+                label: 'Evènement'
+            }) }}
+
+            <button type="submit" class="btn btn-lg btn-primary">S'enregistrer à l'évènement</button>
+        {{ form_end(eventRegistrationForm) }}
+        
+    </div>
+
+{% endblock %}

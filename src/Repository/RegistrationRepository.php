@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Event;
 use App\Entity\Registration;
 use Doctrine\Persistence\ManagerRegistry;
@@ -9,6 +10,11 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Registration>
+ *  
+ * @method Registration|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Registration|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Registration[]    findAll()
+ * @method Registration[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class RegistrationRepository extends ServiceEntityRepository
 {
@@ -17,12 +23,40 @@ class RegistrationRepository extends ServiceEntityRepository
         parent::__construct($registry, Registration::class);
     }
 
+    public function add(Registration $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Registration $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function countRegistrationsByEvent(Event $event)
     {
         return $this->createQueryBuilder('r')
             ->select('count(r.id)')
             ->where('r.event = :event')
             ->setParameter('event', $event)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countRegistrationsByUser(User $user)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('count(r.id)')
+            ->where('r.user = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getSingleScalarResult();
     }

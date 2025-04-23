@@ -33,7 +33,7 @@ class Registration
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $registeredAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]
@@ -41,6 +41,10 @@ class Registration
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]
     private ?Event $event = null;
+
+    public function __construct() {
+        $this->registeredAt = new \DateTimeImmutable(); 
+    }
 
     public function getId(): ?int
     {
