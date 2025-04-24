@@ -7,11 +7,18 @@
 <div class="container mx-auto my-5 w-50">
     <h1 class="my-5">Bienvenue dans SubEvent-exo! ✅</h1>
 
+    {% if app.user %}
+    Veuillez vous rediriger vers la page d'accueil du site par ce lien :
+    <ul class="my-4">                
+        <li class="my-2">Accueil au site : <a href="{{ path('app_home') }}" class="btn btn-sm btn-outline-secondary">ici</a></li>
+    </ul>
+    {% else %}
     Vous avez la possibilité de vous inscrire ou de vous connecter si votre compte a déjà été crée :
     <ul class="my-4">
         <li class="my-2">Connexion au site : <a href="{{ path('app_login') }}" class="btn btn-sm btn-outline-secondary">ici</a></li>
-        <li class="my-2">Création de compte : <a href="{{ path('app_register') }}" class="btn btn-sm btn-outline-primary">ici</a></li>
+        <li class="my-2">Création de compte : <a href="{{ path('app_register') }}" class="btn btn-sm btn-outline-primary">ici</a></li>             
     </ul>
+    {% endif %} 
 
     {% if app.user %}
         <div class="mb-3">

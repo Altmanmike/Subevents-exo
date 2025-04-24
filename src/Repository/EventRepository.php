@@ -49,7 +49,19 @@ class EventRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getResult();
-    } 
+    }
+
+    /**
+     * @return Event Returns an Event object
+     */
+    public function findEventByTitle($title): ?Event
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.title = :title')
+            ->setParameter('title', $title)            
+            ->getQuery()            
+            ->getOneOrNullResult();
+    }
 
     //    /**
     //     * @return Event[] Returns an array of Event objects

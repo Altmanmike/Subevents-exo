@@ -8,15 +8,17 @@ use Psr\Log\LoggerInterface;
 use App\Event\UserRegisteredEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\EventListener\LogRegisteredEvent;
-use App\EventListener\SendSmsRegisteredEvent;
+use App\Repository\EventRepository;
 use App\Repository\RegistrationRepository;
+use App\EventListener\SendSmsRegisteredEvent;
 use App\EventListener\SendMailRegisteredEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class EventRegistrationManager {   
 
     public function __construct(
-        private RegistrationRepository $repo,
+        private RegistrationRepository $repoR,
+        private EventRepository $repoE,
         private EntityManagerInterface $entityManager,
         private EventDispatcherInterface $dispatcher,
         private SendMailRegisteredEvent $sendMailRegisteredEvent,
@@ -26,19 +28,24 @@ class EventRegistrationManager {
 
     public function addRegistration(Registration $registration) {
 
+        // Vérifier que l'évènement est en cours ou à venir              
+        if (($this->repoE->findEventByTitle($registration->getEvent()->getTitle())->getEndAt()) <= $registration->getEvent()->getCreatedAt()) {
+            throw new Exception("❌ Cet évènement est déjà passé.");
+        }
+
         // Vérifier qu’un utilisateur peut s’inscrire.
-        if (($this->repo->countRegistrationsByUser($registration->getUser())) == 1 && ($this->repo->countRegistrationsByEvent($registration->getEvent()) == 1)) {
+        if (($this->repoR->countRegistrationsByUser($registration->getUser())) == 1 && ($this->repoR->countRegistrationsByEvent($registration->getEvent()) == 1)) {
             throw new Exception("❌ Vous êtes déjà inscrit à cet évènement.");
         }
 
         // Vérifier si l’événement est complet.
         //dd($this->repo->countRegistrationsByEvent($registration->getEvent()), $registration->getEvent()->getMaxParticipants());
-        if ($this->repo->countRegistrationsByEvent($registration->getEvent()) >= $registration->getEvent()->getMaxParticipants()) {
+        if ($this->repoR->countRegistrationsByEvent($registration->getEvent()) >= $registration->getEvent()->getMaxParticipants()) {
             throw new Exception("❌ Il y a déjà trop d'inscrits pour cet évènement.");
         }
 
         // Ajouter la réservation
-        $this->repo->add($registration);
+        $this->repoR->add($registration);
         $this->entityManager->flush();
 
         // Lancer un Event Symfony UserRegisteredEvent.
