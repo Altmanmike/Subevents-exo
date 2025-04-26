@@ -20,7 +20,12 @@ class EventRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Event::class);
     }
-
+    
+    /**
+     * @param mixed $entity
+     * @param mixed $flush
+     * @return void
+     */
     public function add(Event $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -29,7 +34,12 @@ class EventRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    
+    /**
+     * @param mixed $entity
+     * @param mixed $flush
+     * @return void
+     */
     public function remove(Event $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -50,17 +60,33 @@ class EventRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
+  
     /**
+     * @param mixed $title
      * @return Event Returns an Event object
      */
     public function findEventByTitle($title): ?Event
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.title = :title')
+            ->Where('e.title = :title')
             ->setParameter('title', $title)            
             ->getQuery()            
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @param mixed $startAt
+     * @return Event[] Returns an array of Event objects
+     */
+    public function findComingEventsAtDate($startAt): array
+    {
+        return $this->createQueryBuilder('e')
+            ->where('SUBSTRING(e.startAt, 1, 10) = :datePart')
+            ->setParameter('datePart', $startAt)
+            ->orderBy('e.id', 'ASC')                
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     //    /**

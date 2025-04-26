@@ -13,17 +13,17 @@ class UserRegisteredEvent extends Event
     public function __construct(private User $user, private EventEntity $event) {}  
 
     /**
-     * Get the value of user
+     * @return object
      */ 
-    public function getUser()
+    public function getUser(): object
     {
         return $this->user;
     }
 
     /**
-     * Get the value of event
-     */ 
-    public function getEvent()
+     * @return object
+     */
+    public function getEvent(): object
     {
         return $this->event;
     }

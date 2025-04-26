@@ -9,8 +9,12 @@ use Symfony\Component\Mailer\MailerInterface;
 class SendMailRegisteredEvent 
 {
     public function __construct(private MailerInterface $mailer) {}
-
-    public function onUserRegisteredEvent(UserRegisteredEvent $event)
+  
+    /**
+     * @param mixed $event
+     * @return void
+     */
+    public function onUserRegisteredEvent(UserRegisteredEvent $event): void
     {
         $user = $event->getUser();
         $eventt = $event->getEvent();

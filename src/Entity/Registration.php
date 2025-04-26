@@ -45,41 +45,65 @@ class Registration
     public function __construct() {
         $this->registeredAt = new \DateTimeImmutable(); 
     }
-
+    
+    /**
+     * @return ?int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    /**
+     * @return ?\DateTimeImmutable
+     */
     public function getRegisteredAt(): ?\DateTimeImmutable
     {
         return $this->registeredAt;
     }
-
+    
+    /**
+     * @param mixed $registeredAt
+     * @return static
+     */
     public function setRegisteredAt(\DateTimeImmutable $registeredAt): static
     {
         $this->registeredAt = $registeredAt;
 
         return $this;
     }
-
+    
+    /**
+     * @return ?User
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
-
+    
+    /**
+     * @param mixed $user
+     * @return static
+     */
     public function setUser(?User $user): static
     {
         $this->user = $user;
 
         return $this;
     }
-
+    
+    /**
+     * @return ?Event
+     */
     public function getEvent(): ?Event
     {
         return $this->event;
     }
-
+    
+    /**
+     * @param mixed $event
+     * @return static
+     */
     public function setEvent(?Event $event): static
     {
         $this->event = $event;

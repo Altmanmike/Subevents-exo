@@ -23,7 +23,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         parent::__construct($registry, User::class);
     }
-
+    
+    /**
+     * @param mixed $entity
+     * @param mixed $flush
+     * @return void
+     */
     public function add(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -32,7 +37,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             $this->getEntityManager()->flush();
         }
     }
-
+    
+    /**
+     * @param mixed $entity
+     * @param mixed $flush
+     * @return void
+     */
     public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

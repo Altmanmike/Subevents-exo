@@ -22,7 +22,12 @@ class RegistrationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Registration::class);
     }
-
+    
+    /**
+     * @param mixed $entity
+     * @param mixed $flush
+     * @return void
+     */
     public function add(Registration $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -31,7 +36,12 @@ class RegistrationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    
+    /**
+     * @param mixed $entity
+     * @param mixed $flush
+     * @return void
+     */
     public function remove(Registration $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -40,8 +50,12 @@ class RegistrationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-    public function countRegistrationsByEvent(Event $event)
+    
+    /**
+     * @param mixed $event
+     * @return mixed
+     */
+    public function countRegistrationsByEvent(Event $event): mixed
     {
         return $this->createQueryBuilder('r')
             ->select('count(r.id)')
@@ -50,8 +64,12 @@ class RegistrationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
-
-    public function countRegistrationsByUser(User $user)
+    
+    /**
+     * @param mixed $user
+     * @return mixed
+     */
+    public function countRegistrationsByUser(User $user): mixed
     {
         return $this->createQueryBuilder('r')
             ->select('count(r.id)')
@@ -59,6 +77,19 @@ class RegistrationRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * @param mixed $event
+     * @return Registration[] Returns an array of Registration object
+     */
+    public function getRegistrationsByEvent(Event $event): array
+    {
+        return $this->createQueryBuilder('r')            
+            ->where('r.event = :event')
+            ->setParameter('event', $event)
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**

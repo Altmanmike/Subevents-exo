@@ -82,17 +82,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->createdAt = new \DateTimeImmutable(); 
         $this->registrations = new ArrayCollection(); 
     }
-
+    
+    /**
+     * @return ?int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    /**
+     * @return ?string
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
+    
+    /**
+     * @param mixed $email
+     * @return static
+     */
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -157,48 +167,76 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
+    
+    /**
+     * @return ?string
+     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
-
+    
+    /**
+     * @param mixed $firstName
+     * @return static
+     */
     public function setFirstName(string $firstName): static
     {
         $this->firstName = $firstName;
 
         return $this;
     }
-
+    
+    /**
+     * @return ?string
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
-
+    
+    /**
+     * @param mixed $lastName
+     * @return static
+     */
     public function setLastName(string $lastName): static
     {
         $this->lastName = $lastName;
 
         return $this;
     }
-
+    
+    /**
+     * @return ?string
+     */
     public function getPhone(): ?string
     {
         return $this->phone;
     }
-
+    
+    /**
+     * @param mixed $phone
+     * @return static
+     */
     public function setPhone(?string $phone): static
     {
         $this->phone = $phone;
 
         return $this;
     }
-
+    
+    /**
+     * @return ?\DateTimeImmutable
+     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
-
+    
+    /**
+     * @param mixed $createdAt
+     * @return static
+     */
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
@@ -213,7 +251,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->registrations;
     }
-
+    
+    /**
+     * @param mixed $registration
+     * @return static
+     */
     public function addRegistration(Registration $registration): static
     {
         if (!$this->registrations->contains($registration)) {
@@ -223,7 +265,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+    
+    /**
+     * @param mixed $registration
+     * @return static
+     */
     public function removeRegistration(Registration $registration): static
     {
         if ($this->registrations->removeElement($registration)) {
@@ -235,12 +281,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+    
+    /**
+     * @return bool
+     */
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
-
+    
+    /**
+     * @param mixed $isVerified
+     * @return static
+     */
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
