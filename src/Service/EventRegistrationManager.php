@@ -25,9 +25,13 @@ class EventRegistrationManager {
         private LogRegisteredEvent $logRegisteredEvent,
         private SendSmsRegisteredEvent $smsRegisteredEvent,
         private LoggerInterface $logger) {}
-
-    public function addRegistration(Registration $registration) {
-
+    
+    /**
+     * @param mixed $registration
+     * @return void
+     */
+    public function addRegistration(Registration $registration): void
+    {
         // Vérifier que l'évènement est en cours ou à venir              
         if (($this->repoE->findEventByTitle($registration->getEvent()->getTitle())->getEndAt()) <= $registration->getEvent()->getCreatedAt()) {
             throw new Exception("❌ Cet évènement est déjà passé.");
