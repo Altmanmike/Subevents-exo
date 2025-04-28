@@ -4,6 +4,7 @@ namespace App\EventListener;
 
 use Psr\Log\LoggerInterface;
 use App\Event\UserRegisteredEvent;
+use Symfony\Bridge\Monolog\Logger;
 
 class LogRegisteredEvent
 {
