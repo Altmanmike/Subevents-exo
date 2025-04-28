@@ -7,7 +7,7 @@ use App\Entity\Event;
 use PHPUnit\Framework\TestCase;
 use App\Event\UserRegisteredEvent;
 
-class SomeTest extends TestCase 
+class UnitaireManagerTest extends TestCase 
 {
     //public function __construct() {}
 
@@ -46,5 +46,25 @@ class SomeTest extends TestCase
         $this->assertContainsOnlyInstancesOf(User::class, [ $userReg->getUser() ]);
         $this->assertContainsOnlyInstancesOf(Event::class, [ $userReg->getEvent() ]);
     }
+
+    /*public function testLogRegisteredEvent()
+    {
+
+    }
+
+    public function testSendMailRegisteredEvent()
+    {
+
+    }
+
+    public function testSendSmsRegisteredEvent()
+    {
+
+    }
+
+    public function testAddRegistration()
+    {
+
+    } */
     
 }
